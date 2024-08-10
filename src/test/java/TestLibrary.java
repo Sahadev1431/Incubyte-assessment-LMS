@@ -14,4 +14,8 @@ public class TestLibrary {
     public void initialTest() {
 
     }
+
+    public void addBookToLibrary() {
+        library.addBook();
+    }
 }
