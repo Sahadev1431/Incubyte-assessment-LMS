@@ -24,6 +24,6 @@ public class TestLibrary {
         testbook = new Book(101,"The God of Small Things","Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
 
-        assertEquals(1,library.booksOfLibrary.size());
+        assertEquals(1,library.getNumberOfBooks());
     }
 }
