@@ -30,10 +30,9 @@ public class TestLibrary {
 
     @Test
     public void nonUniqueISBN_ShouldThrowAnException() {
-        testbook = new Book(101,"The God of Small Things","Arundhati Roy", Year.of(1997));
+        testbook = new Book(102,"The God of Small Things","Arundhati Roy", Year.of(1997));
         assertThrows(IllegalArgumentException.class, () -> {
-            Book nonUnique = new Book(101,"The God of Small Things","Arundhati Roy", Year.of(1997));
-
+            Book nonUnique = new Book(102,"The God of Small Things","Arundhati Roy", Year.of(1997));
         });
     }
 }
