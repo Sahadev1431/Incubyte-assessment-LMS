@@ -56,4 +56,11 @@ public class TestLibrary {
             library.borrowBook(104);
         });
     }
+
+    @Test
+    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatDoesNotExist() {
+        assertThrows(BookNotFoundException.class, () -> {
+            library.borrowBook(105);
+        });
+    }
 }
