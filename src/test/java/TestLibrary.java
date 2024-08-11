@@ -103,4 +103,18 @@ public class TestLibrary {
 
         assertArrayEquals(addedBooks.toArray() , library.viewAvailableBooks().toArray());
     }
+
+    @Test
+    public void shouldReturnTrueIfBookPresentInLibrary() {
+        testbook = new Book(110,"Manorama Mishra2","Maha Kavitha2", Year.of(2001));
+        Book test2 = new Book(111,"Manorama Mishra3","Maha Kavitha3", Year.of(2001));
+
+        library.addBook(testbook);
+        library.addBook(test2);
+
+        List<Book> booksPresentInLibrary = library.viewAvailableBooks();
+
+        assertTrue(booksPresentInLibrary.contains(testbook));
+        assertTrue(booksPresentInLibrary.contains(test2));
+    }
 }
