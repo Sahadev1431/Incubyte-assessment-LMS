@@ -35,6 +35,18 @@ public class Library {
         if (!isBookFromLibrary) {
             throw new IllegalArgumentException("Book doesn't belong to our library: ISBN - " + returnBookISBN);
         }
+
+        boolean bookExistInLibrary;
+
+        if (allBooksOfLibrary.get(returnBookISBN) != null) {
+            bookExistInLibrary = true;
+        } else {
+            bookExistInLibrary = false;
+        }
+
+        if (bookExistInLibrary) {
+            throw new IllegalArgumentException("Book already exist in library: ISBN- " +returnBookISBN);
+        }
     }
 
     public Book searchByISBN(int currentBookISBN) {

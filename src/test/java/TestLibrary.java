@@ -72,7 +72,7 @@ public class TestLibrary {
     }
 
     @Test
-    public void returnBookShouldThrowAnExceptionOnReturningABookThatAlreadyExistInLibrary() {   // test case fail
+    public void returnBookShouldThrowAnExceptionOnReturningABookThatAlreadyExistInLibrary() {   // test case pass
         testbook = new Book(107,"The God of Small Things 5","Arundhati Roy", Year.of(1997));
         library.addBook(testbook);                  // book added to library
         assertThrows(IllegalArgumentException.class, () -> {
