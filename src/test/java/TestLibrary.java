@@ -67,7 +67,7 @@ public class TestLibrary {
     @Test
     public void returnBookShouldThrowAnExceptionOnReturningABookThatDoesNotBelongToLibrary() {
         assertThrows(IllegalArgumentException.class, () -> {
-             library.returnBook(106);
+             library.returnBook(104);
         });
     }
 }
