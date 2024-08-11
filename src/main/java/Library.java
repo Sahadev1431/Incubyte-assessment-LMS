@@ -30,7 +30,7 @@ public class Library {
     * we should throw an exception.
     * so to keep record of every book from library implementing HashMap*/
     public void returnBook(int returnBookISBN) {
-        Book bookFromLibrary = bookFromLibrary(returnBookISBN);
+        Book bookFromLibrary = getBookFromLibrary(returnBookISBN);
 
         if (bookFromLibrary == null) {      // if book not from our library then it will be null
             throw new IllegalArgumentException("Book doesn't belong to our library: ISBN - " + returnBookISBN);
@@ -52,7 +52,7 @@ public class Library {
                 .orElse(null);
     }
 
-    public Book bookFromLibrary(int returnBookISBN) {
+    public Book getBookFromLibrary(int returnBookISBN) {
         return allBooksOfLibrary.get(returnBookISBN);   // return Book object
     }
 
