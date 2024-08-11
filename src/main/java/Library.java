@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    List<Book> booksOfLibrary = new ArrayList<>();
+    private List<Book> booksOfLibrary = new ArrayList<>();
+
     public void addBook(Book bookToAdd) {
         booksOfLibrary.add(bookToAdd);
+    }
+
+    public void borrowBook(int ISBN) {
+
     }
 
     public int getNumberOfBooks() {

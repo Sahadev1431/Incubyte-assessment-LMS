@@ -35,4 +35,13 @@ public class TestLibrary {
             Book nonUnique = new Book(102,"The God of Small Things","Arundhati Roy", Year.of(1997));
         });
     }
+
+    @Test
+    public void borrowBookShouldDecreaseNumberOfBook() {
+        testbook = new Book(103,"The God of Small Things","Arundhati Roy", Year.of(1997));
+        library.addBook(testbook);
+        library.borrowBook(103);
+        assertEquals(0,library.getNumberOfBooks());
+
+    }
 }
