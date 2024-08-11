@@ -79,4 +79,13 @@ public class TestLibrary {
             library.returnBook(107);    // trying to return book exist in library
         });
     }
+
+    @Test
+    public void returnBookShouldIncreaseNumberOfBook() {        // test case fail
+        testbook = new Book(108,"Manorama Mishra","Maha Kavitha", Year.of(2001));
+        library.addBook(testbook);
+        library.borrowBook(108);
+        library.returnBook(108);
+        assertEquals(1,library.getNumberOfBooks());
+    }
 }
