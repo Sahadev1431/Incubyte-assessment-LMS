@@ -6,16 +6,16 @@ import java.util.Set;
 
 public class Book {
 
-    private static Set<Integer>uniqueISBNs = new HashSet<>();
+    private static Set<String> uniqueISBNs = new HashSet<>();
 
-    private int ISBN;
+    private String ISBN;
     private String title;
     private String author;
     private Year year;
 
-    public Book(int ISBN, String title, String author, Year year) {
+    public Book(String ISBN, String title, String author, Year year) {
         if (uniqueISBNs.contains(ISBN)) {
-            throw new IllegalArgumentException("ISBN should be unique " + ISBN);
+            throw new IllegalArgumentException("ISBN should be unique: " + ISBN);
         }
 
         uniqueISBNs.add(ISBN);
@@ -25,7 +25,7 @@ public class Book {
         this.year = year;
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 }

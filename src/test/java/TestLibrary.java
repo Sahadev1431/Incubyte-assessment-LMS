@@ -14,100 +14,96 @@ import java.util.List;
 public class TestLibrary {
     Library library;
     Book testbook;
+
     @Before
     public void setup() {
         library = new Library();
     }
-    @Test
-    public void initialTest() {
-
-    }
 
     @Test
     public void addBookToLibrary() {
-        testbook = new Book(101,"The God of Small Things","Arundhati Roy", Year.of(1997));
+        testbook = new Book("111-222-333", "The God of Small Things", "Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
 
-        assertEquals(1,library.getNumberOfBooks());
+        assertEquals(1, library.getNumberOfBooks());
     }
 
     @Test
     public void nonUniqueISBN_ShouldThrowAnException() {
-        testbook = new Book(102,"The God of Small Things","Arundhati Roy", Year.of(1997));
+        testbook = new Book("111-345-678", "The God of Small Things", "Arundhati Roy", Year.of(1997));
         assertThrows(IllegalArgumentException.class, () -> {
-            Book nonUnique = new Book(102,"The God of Small Things","Arundhati Roy", Year.of(1997));
+            Book nonUnique = new Book("111-345-678", "The God of Small Things", "Arundhati Roy", Year.of(1997));
         });
     }
 
     @Test
-    public void borrowBookShouldDecreaseNumberOfBook() {        // test case pass
-        testbook = new Book(103,"The God of Small Things","Arundhati Roy", Year.of(1997));
+    public void borrowBookShouldDecreaseNumberOfBook() {
+        testbook = new Book("111-222-334", "The God of Small Things", "Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
-        library.borrowBook(103);
-        assertEquals(0,library.getNumberOfBooks());
+        library.borrowBook("111-222-334");
+        assertEquals(0, library.getNumberOfBooks());
     }
 
     @Test
-    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatIsNotAvailable() {  // test case pass
-        testbook = new Book(104,"The God of Small Things","Arundhati Roy", Year.of(1997));
+    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatIsNotAvailable() {
+        testbook = new Book("111-222-335", "The God of Small Things", "Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
 
-        library.borrowBook(104);
+        library.borrowBook("111-222-335");
 
         assertThrows(BookNotFoundException.class, () -> {
-            library.borrowBook(104);
+            library.borrowBook("111-222-335");
         });
     }
 
     @Test
-    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatDoesNotExist() {       // test case pass
+    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatDoesNotExist() {
         assertThrows(BookNotFoundException.class, () -> {
-            library.borrowBook(105);
+            library.borrowBook("111-222-336");
         });
     }
 
     @Test
     public void returnBookShouldThrowAnExceptionOnReturningABookThatDoesNotBelongToLibrary() {
         assertThrows(IllegalArgumentException.class, () -> {
-             library.returnBook(104);
+            library.returnBook("111-222-337");
         });
     }
 
     @Test
-    public void returnBookShouldThrowAnExceptionOnReturningABookThatAlreadyExistInLibrary() {   // test case pass
-        testbook = new Book(107,"The God of Small Things 5","Arundhati Roy", Year.of(1997));
-        library.addBook(testbook);                  // book added to library
-        assertThrows(IllegalArgumentException.class, () -> {
-            library.returnBook(107);    // trying to return book exist in library
-        });
-    }
-
-    @Test
-    public void returnBookShouldIncreaseNumberOfBook() {        // test case pass
-        testbook = new Book(108,"Manorama Mishra","Maha Kavitha", Year.of(2001));
+    public void returnBookShouldThrowAnExceptionOnReturningABookThatAlreadyExistInLibrary() {
+        testbook = new Book("111-222-338", "The God of Small Things 5", "Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
-        library.borrowBook(108);
-        library.returnBook(108);
-        assertEquals(1,library.getNumberOfBooks());
+        assertThrows(IllegalArgumentException.class, () -> {
+            library.returnBook("111-222-338");
+        });
     }
 
     @Test
-    public void viewAvailableBooksShouldReturnListOfBooksPresentInLibrary() {  // test case pass
-        testbook = new Book(109,"Manorama Mishra1","Maha Kavitha1", Year.of(2001));
+    public void returnBookShouldIncreaseNumberOfBook() {
+        testbook = new Book("111-222-339", "Manorama Mishra", "Maha Kavitha", Year.of(2001));
+        library.addBook(testbook);
+        library.borrowBook("111-222-339");
+        library.returnBook("111-222-339");
+        assertEquals(1, library.getNumberOfBooks());
+    }
 
+    @Test
+    public void viewAvailableBooksShouldReturnListOfBooksPresentInLibrary() {
+        testbook = new Book("111-222-340", "Manorama Mishra1", "Maha Kavitha1", Year.of(2001));
 
         library.addBook(testbook);
 
         List<Book> addedBooks = new ArrayList<>();
         addedBooks.add(testbook);
 
-        assertArrayEquals(addedBooks.toArray() , library.viewAvailableBooks().toArray());
+        assertArrayEquals(addedBooks.toArray(), library.viewAvailableBooks().toArray());
     }
 
     @Test
     public void shouldReturnTrueIfBookPresentInLibrary() {
-        testbook = new Book(110,"Manorama Mishra2","Maha Kavitha2", Year.of(2001));
-        Book test2 = new Book(111,"Manorama Mishra3","Maha Kavitha3", Year.of(2001));
+        testbook = new Book("111-222-341", "Manorama Mishra2", "Maha Kavitha2", Year.of(2001));
+        Book test2 = new Book("111-222-342", "Manorama Mishra3", "Maha Kavitha3", Year.of(2001));
 
         library.addBook(testbook);
         library.addBook(test2);
@@ -120,9 +116,9 @@ public class TestLibrary {
 
     @Test
     public void shouldReturnFalseIfBookHasBorrowed() {
-        testbook = new Book(112,"Manorama Mishra4","Maha Kavitha2", Year.of(2001));
-        library.addBook(testbook);          // first add book to library
-        library.borrowBook(112);        //  now borrowed book
+        testbook = new Book("111-222-343", "Manorama Mishra4", "Maha Kavitha2", Year.of(2001));
+        library.addBook(testbook);
+        library.borrowBook("111-222-343");
 
         List<Book> booksPresentInLibrary = library.viewAvailableBooks();
         assertFalse(booksPresentInLibrary.contains(testbook));
