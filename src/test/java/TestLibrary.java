@@ -42,6 +42,17 @@ public class TestLibrary {
         library.addBook(testbook);
         library.borrowBook(103);
         assertEquals(0,library.getNumberOfBooks());
+    }
 
+    @Test
+    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatIsNotAvailable() {
+        testbook = new Book(104,"The God of Small Things","Arundhati Roy", Year.of(1997));
+        library.addBook(testbook);
+
+        library.borrowBook(104);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            library.borrowBook(104);
+        });
     }
 }
