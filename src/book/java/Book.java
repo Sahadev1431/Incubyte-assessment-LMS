@@ -7,6 +7,7 @@ import java.util.Set;
 public class Book {
 
     private static Set<Integer>uniqueISBNs = new HashSet<>();
+
     private int ISBN;
     private String title;
     private String author;
@@ -22,5 +23,9 @@ public class Book {
         this.title = title;
         this.author = author;
         this.year = year;
+    }
+
+    public int getISBN() {
+        return ISBN;
     }
 }

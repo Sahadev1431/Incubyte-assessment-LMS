@@ -37,7 +37,7 @@ public class TestLibrary {
     }
 
     @Test
-    public void borrowBookShouldDecreaseNumberOfBook() {
+    public void borrowBookShouldDecreaseNumberOfBook() {        // test case pass
         testbook = new Book(103,"The God of Small Things","Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
         library.borrowBook(103);

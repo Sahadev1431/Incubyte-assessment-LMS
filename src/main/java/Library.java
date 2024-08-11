@@ -12,8 +12,12 @@ public class Library {
         booksOfLibrary.add(bookToAdd);
     }
 
-    public void borrowBook(int ISBN) {
-
+    public void borrowBook(int borrowBookISBN) {
+        Book bookToBorrow = booksOfLibrary.stream()
+                .filter(existingBooks -> existingBooks.getISBN() == borrowBookISBN)
+                .findFirst()
+                .orElse(null);
+        booksOfLibrary.remove(bookToBorrow);
     }
 
     public int getNumberOfBooks() {
