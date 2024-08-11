@@ -70,4 +70,13 @@ public class TestLibrary {
              library.returnBook(104);
         });
     }
+
+    @Test
+    public void returnBookShouldThrowAnExceptionOnReturningABookThatAlreadyExistInLibrary() {   // test case fail
+        testbook = new Book(107,"The God of Small Things 5","Arundhati Roy", Year.of(1997));
+        library.addBook(testbook);                  // book added to library
+        assertThrows(IllegalArgumentException.class, () -> {
+            library.returnBook(107);    // trying to return book exist in library
+        });
+    }
 }
