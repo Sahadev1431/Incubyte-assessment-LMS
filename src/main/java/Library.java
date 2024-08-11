@@ -13,11 +13,21 @@ public class Library {
     }
 
     public void borrowBook(int borrowBookISBN) {
-        Book bookToBorrow = booksOfLibrary.stream()
-                .filter(existingBooks -> existingBooks.getISBN() == borrowBookISBN)
+        Book bookToBorrow = searchByISBN(borrowBookISBN);
+
+        if (bookToBorrow == null) {
+            throw new BookNotFoundException(borrowBookISBN);
+        } else {
+            booksOfLibrary.remove(bookToBorrow);
+        }
+    }
+
+    public Book searchByISBN(int currentBookISBN) {
+
+        return booksOfLibrary.stream()
+                .filter(existingBooks -> existingBooks.getISBN() == currentBookISBN)
                 .findFirst()
-                .orElseThrow(() -> new BookNotFoundException(borrowBookISBN));
-        booksOfLibrary.remove(bookToBorrow);
+                .orElse(null);
     }
 
     public int getNumberOfBooks() {
