@@ -1,6 +1,7 @@
 package test.java;
 
 import book.java.Book;
+import main.java.BookNotFoundException;
 import main.java.Library;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -45,13 +46,13 @@ public class TestLibrary {
     }
 
     @Test
-    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatIsNotAvailable() {
+    public void borrowBookShouldThrowAnExceptionOnTryingToBorrowABookThatIsNotAvailable() {  // test case pass
         testbook = new Book(104,"The God of Small Things","Arundhati Roy", Year.of(1997));
         library.addBook(testbook);
 
         library.borrowBook(104);
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(BookNotFoundException.class, () -> {
             library.borrowBook(104);
         });
     }

@@ -16,7 +16,7 @@ public class Library {
         Book bookToBorrow = booksOfLibrary.stream()
                 .filter(existingBooks -> existingBooks.getISBN() == borrowBookISBN)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new BookNotFoundException(borrowBookISBN));
         booksOfLibrary.remove(bookToBorrow);
     }
 
