@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class Book {
 
+    // To ensure that ISBN should be unique
     private static Set<String> uniqueISBNs = new HashSet<>();
 
     private String ISBN;
