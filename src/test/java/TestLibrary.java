@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestLibrary {
     Library library;
@@ -87,5 +89,18 @@ public class TestLibrary {
         library.borrowBook(108);
         library.returnBook(108);
         assertEquals(1,library.getNumberOfBooks());
+    }
+
+    @Test
+    public void viewAvailableBooksShouldReturnListOfBooksPresentInLibrary() {  // fail test case
+        testbook = new Book(109,"Manorama Mishra1","Maha Kavitha1", Year.of(2001));
+
+
+        library.addBook(testbook);
+
+        List<Book> addedBooks = new ArrayList<>();
+        addedBooks.add(testbook);
+
+        assertArrayEquals(addedBooks.toArray() , library.viewAvailableBooks().toArray());
     }
 }

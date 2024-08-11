@@ -44,6 +44,9 @@ public class Library {
         booksPresentInLibrary.add(bookFromLibrary);         // it will add borrowed book if it belongs to library
     }
 
+    public void viewAvailableBooks() {
+    }
+
     public Book searchByISBN(int currentBookISBN) {
 
         return booksPresentInLibrary.stream()
