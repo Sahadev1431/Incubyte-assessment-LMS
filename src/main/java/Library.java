@@ -3,13 +3,17 @@ package main.java;
 import book.java.Book;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Library {
-    private List<Book> booksOfLibrary = new ArrayList<>();
+    private Map<Integer,Book> allBooksOfLibrary = new HashMap<>();
+    private List<Book> booksPresentInLibrary = new ArrayList<>();
 
     public void addBook(Book bookToAdd) {
-        booksOfLibrary.add(bookToAdd);
+        booksPresentInLibrary.add(bookToAdd);
+        allBooksOfLibrary.put(bookToAdd.getISBN(), bookToAdd);
     }
 
     public void borrowBook(int borrowBookISBN) {
@@ -18,25 +22,36 @@ public class Library {
         if (bookToBorrow == null) {
             throw new BookNotFoundException(borrowBookISBN);
         } else {
-            booksOfLibrary.remove(bookToBorrow);
+            booksPresentInLibrary.remove(bookToBorrow);
         }
     }
 
     /* It might be case like user try to return a book that doesn't belong to our library . So in such case
-    * we should throw an exception.*/
+    * we should throw an exception.
+    * so to keep record of every book from library implementing HashMap*/
     public void returnBook(int returnBookISBN) {
+        boolean isBookFromLibrary;
 
+        if (allBooksOfLibrary.containsKey(returnBookISBN)) {
+            isBookFromLibrary = true;
+        } else {
+            isBookFromLibrary = false;
+        }
+
+        if (!isBookFromLibrary) {
+            throw new IllegalArgumentException("Book doesn't belong to our library: ISBN - " + returnBookISBN);
+        }
     }
 
     public Book searchByISBN(int currentBookISBN) {
 
-        return booksOfLibrary.stream()
+        return booksPresentInLibrary.stream()
                 .filter(existingBooks -> existingBooks.getISBN() == currentBookISBN)
                 .findFirst()
                 .orElse(null);
     }
 
     public int getNumberOfBooks() {
-        return booksOfLibrary.size();
+        return booksPresentInLibrary.size();
     }
 }
