@@ -22,6 +22,12 @@ public class Library {
         }
     }
 
+    /* It might be case like user try to return a book that doesn't belong to our library . So in such case
+    * we should throw an exception.*/
+    public void returnBook(int returnBookISBN) {
+
+    }
+
     public Book searchByISBN(int currentBookISBN) {
 
         return booksOfLibrary.stream()

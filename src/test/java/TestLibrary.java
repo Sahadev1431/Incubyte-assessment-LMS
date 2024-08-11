@@ -63,4 +63,11 @@ public class TestLibrary {
             library.borrowBook(105);
         });
     }
+
+    @Test
+    public void returnBookShouldThrowAnExceptionOnReturningABookThatDoesNotBelongToLibrary() {
+        assertThrows(IllegalArgumentException.class, () -> {
+             library.returnBook(106);
+        });
+    }
 }
