@@ -92,7 +92,7 @@ public class TestLibrary {
     }
 
     @Test
-    public void viewAvailableBooksShouldReturnListOfBooksPresentInLibrary() {  // fail test case
+    public void viewAvailableBooksShouldReturnListOfBooksPresentInLibrary() {  // test case pass
         testbook = new Book(109,"Manorama Mishra1","Maha Kavitha1", Year.of(2001));
 
 
