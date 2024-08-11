@@ -1,6 +1,7 @@
 package test.java;
 
 import book.java.Book;
+import book.java.DuplicateISBNException;
 import main.java.BookNotFoundException;
 import main.java.Library;
 import static org.junit.Assert.*;
@@ -31,7 +32,7 @@ public class TestLibrary {
     @Test
     public void nonUniqueISBN_ShouldThrowAnException() {
         testbook = new Book("111-345-678", "The God of Small Things", "Arundhati Roy", Year.of(1997));
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(DuplicateISBNException.class, () -> {
             Book nonUnique = new Book("111-345-678", "The God of Small Things", "Arundhati Roy", Year.of(1997));
         });
     }

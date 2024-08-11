@@ -16,7 +16,7 @@ public class Book {
 
     public Book(String ISBN, String title, String author, Year year) {
         if (uniqueISBNs.contains(ISBN)) {
-            throw new IllegalArgumentException("ISBN should be unique: " + ISBN);
+            throw new DuplicateISBNException(ISBN);
         }
 
         uniqueISBNs.add(ISBN);
