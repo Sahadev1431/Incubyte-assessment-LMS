@@ -117,4 +117,14 @@ public class TestLibrary {
         assertTrue(booksPresentInLibrary.contains(testbook));
         assertTrue(booksPresentInLibrary.contains(test2));
     }
+
+    @Test
+    public void shouldReturnFalseIfBookHasBorrowed() {
+        testbook = new Book(112,"Manorama Mishra4","Maha Kavitha2", Year.of(2001));
+        library.addBook(testbook);          // first add book to library
+        library.borrowBook(112);        //  now borrowed book
+
+        List<Book> booksPresentInLibrary = library.viewAvailableBooks();
+        assertFalse(booksPresentInLibrary.contains(testbook));
+    }
 }
