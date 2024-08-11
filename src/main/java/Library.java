@@ -30,21 +30,14 @@ public class Library {
     * we should throw an exception.
     * so to keep record of every book from library implementing HashMap*/
     public void returnBook(int returnBookISBN) {
-        boolean isBookFromLibrary = isBookFromLibrary(returnBookISBN);
+        Book bookFromLibrary = bookFromLibrary(returnBookISBN);
 
-        if (!isBookFromLibrary) {
+        if (bookFromLibrary == null) {      // if book not from our library then it will be null
             throw new IllegalArgumentException("Book doesn't belong to our library: ISBN - " + returnBookISBN);
         }
 
-        boolean bookExistInLibrary;
-
-        if (allBooksOfLibrary.get(returnBookISBN) != null) {
-            bookExistInLibrary = true;
-        } else {
-            bookExistInLibrary = false;
-        }
-
-        if (bookExistInLibrary) {
+        // book from our library and already present in library
+        if (booksPresentInLibrary.contains(bookFromLibrary)) {
             throw new IllegalArgumentException("Book already exist in library: ISBN- " +returnBookISBN);
         }
     }
@@ -57,8 +50,8 @@ public class Library {
                 .orElse(null);
     }
 
-    public boolean isBookFromLibrary(int returnBookISBN) {
-        return allBooksOfLibrary.containsKey(returnBookISBN);
+    public Book bookFromLibrary(int returnBookISBN) {
+        return allBooksOfLibrary.get(returnBookISBN);   // return Book object
     }
 
     public int getNumberOfBooks() {
