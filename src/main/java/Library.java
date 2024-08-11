@@ -40,6 +40,8 @@ public class Library {
         if (booksPresentInLibrary.contains(bookFromLibrary)) {
             throw new IllegalArgumentException("Book already exist in library: ISBN- " +returnBookISBN);
         }
+
+        booksPresentInLibrary.add(bookFromLibrary);         // it will add borrowed book if it belongs to library
     }
 
     public Book searchByISBN(int currentBookISBN) {

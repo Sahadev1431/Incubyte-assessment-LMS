@@ -81,7 +81,7 @@ public class TestLibrary {
     }
 
     @Test
-    public void returnBookShouldIncreaseNumberOfBook() {        // test case fail
+    public void returnBookShouldIncreaseNumberOfBook() {        // test case pass
         testbook = new Book(108,"Manorama Mishra","Maha Kavitha", Year.of(2001));
         library.addBook(testbook);
         library.borrowBook(108);
